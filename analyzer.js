@@ -46,10 +46,45 @@ var loadData = (path, callback) => {
     fs.readdir(`${path}/form_data`),
     fs.readdir(`${path}/requests`),
   ]).then(files => {
-    callback(files)
-  }, function (error) {
-    console.log(error)
-  })
+    const formDataFilepaths = files[0].map(x => `${path}/form_data/${x}`)
+    const requestFilepaths = files[1].map(x => `${path}/requests/${x}`)
+    
+    console.log('Loading files...')
+    
+    Promise.all([
+      loadFiles(formDataFilepaths),
+      loadFiles(requestFilepaths)
+    ]).then(contents => {
+      const formDataJSON = contents[0].map(x => JSON.parse(x))
+      const requestsJSON = contents[1].map(x => JSON.parse(x))
+      
+      const requests = requestsJSON.reduce((o, x) => {
+        o[x.id] = new Request(
+          x.id,
+          x.filename,
+          x.time,
+          x.url,
+          x.pageName,
+          x.ipAddress,
+          x.headers,
+          x.userId,
+          x.previousRequestIds,
+          x.geo.countryCode,
+          x.geo.regionCode
+        )
+        return o
+      }, {})
+      const formData = formDataJSON.map(x => (new FormData(
+        x.post,
+        requests[x.requestId]
+      )))
+      const context = new Context(formData, requests)
+      
+      callback(context)
+      
+      console.log('Invoked Callback')
+    }).catch(error => console.log(error))
+  }).catch(error => console.log(error))
 }
 
 module.exports.Request = Request
