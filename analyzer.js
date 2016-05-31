@@ -22,5 +22,10 @@ class FormData {
   }
 }
 
+var getData = function (path) {
+  return {}
+}
+
 module.exports.Request = Request
 module.exports.FormData = FormData
+module.exports.getData = getData
