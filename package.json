@@ -1,0 +1,14 @@
+{
+  "name": "GA-Analyzer",
+  "version": "0.1.0",
+  "description": "A node.js based analyzer for Great-Attractor data archives.",
+  "author": "Florian Pircher <git@leuchtschirm.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SoftwareAgenten/GA-Analyzer"
+  },
+    "bugs": {
+    "url": "https://github.com/SoftwareAgenten/GA-Analyzer/issues"
+  },
+  "license": "MIT"
+}
