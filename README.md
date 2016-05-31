@@ -30,3 +30,25 @@ Invoked Callback
 ```
 
 The context own two properties, `formData : Array`, and `requests : Object`. The IDs of the requests are used as keys on the `requests` property.
+
+## Examples
+
+Output POST-Data of all form-data entries containing the key `log` and `pwd`.
+
+```node
+ctx.formData
+    .filter(x => (x.post.log && x.post.pwd))
+    .map(x => x.post)
+```
+
+Access requests as an array:
+
+```node
+let rs = Object.keys(ctx.requests).map(x => ctx.requests[x])
+```
+
+Output all User-Agents:
+
+```node
+rs.map(x => x.headers['User-Agent'])
+```
