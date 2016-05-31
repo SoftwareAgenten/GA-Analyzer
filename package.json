@@ -7,8 +7,11 @@
     "type": "git",
     "url": "https://github.com/SoftwareAgenten/GA-Analyzer"
   },
-    "bugs": {
+  "bugs": {
     "url": "https://github.com/SoftwareAgenten/GA-Analyzer/issues"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "promised-io": "^0.3.5"
+  }
 }
