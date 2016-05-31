@@ -15,4 +15,12 @@ class Request {
   }
 }
 
+class FormData {
+  constructor(postData, request) {
+    this.post = postData
+    this.request = request
+  }
+}
+
 module.exports.Request = Request
+module.exports.FormData = FormData
