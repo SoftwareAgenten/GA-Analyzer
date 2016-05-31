@@ -1,5 +1,7 @@
 'use strict'
 
+let fs = require('promised-io/fs')
+
 class Request {
   constructor(id, filename, datetime, url, pagename, ipAddress, headers, userId, previousRequestIds, countryCode) {
     this.id = id
@@ -22,10 +24,22 @@ class FormData {
   }
 }
 
-var getData = function (path) {
-  return {}
+var loadData = (path, callback) => {
+  if (typeof path === 'function') {
+    callback = path
+    path = 'data'
+  }
+  
+  Promise.all([
+    fs.readdir(`${path}/form_data`),
+    fs.readdir(`${path}/requests`),
+  ]).then(files => {
+    callback(files)
+  }, function (error) {
+    console.log(error)
+  })
 }
 
 module.exports.Request = Request
 module.exports.FormData = FormData
-module.exports.getData = getData
+module.exports.loadData = loadData
