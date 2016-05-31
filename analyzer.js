@@ -25,6 +25,10 @@ class FormData {
   }
 }
 
+let loadFiles = filepaths => {
+  return Promise.all(filepaths.map(x => fs.readFile(x)))
+}
+
 var loadData = (path, callback) => {
   if (typeof path === 'function') {
     callback = path
