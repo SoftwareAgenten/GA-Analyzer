@@ -1,6 +1,6 @@
 'use strict'
 
-let fs = require('promised-io/fs')
+let fs = require('fs-promise')
 
 class Request {
   constructor(id, filename, datetime, url, pagename, ipAddress, headers, userId, previousRequestIds, countryCode) {
