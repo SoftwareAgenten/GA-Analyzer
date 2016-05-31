@@ -25,6 +25,13 @@ class FormData {
   }
 }
 
+class Context {
+  constructor(formData, requests) {
+    this.formData = formData
+    this.requests = requests
+  }
+}
+
 let loadFiles = filepaths => {
   return Promise.all(filepaths.map(x => fs.readFile(x)))
 }
