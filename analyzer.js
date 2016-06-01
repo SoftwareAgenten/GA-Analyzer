@@ -91,6 +91,21 @@ let loadData = (path, callback) => {
   }).catch(error => console.log(error))
 }
 
+let max = (list) => {
+  var array = []
+  
+	list.forEach(x => {
+		var i = array.findIndex(e => e.name === x)
+		if (i !== -1) {
+			array[i].count += 1
+		} else {
+			array.push({ name: x, count: 1 })
+		}
+	})
+  
+	return array.sort((x, y) => y.count - x.count)
+}
+
 // classes
 module.exports.Request = Request
 module.exports.FormData = FormData
