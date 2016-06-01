@@ -30,6 +30,10 @@ class Context {
     this.formData = formData
     this.requests = requests
   }
+  
+  listRequests() {
+    return Object.keys(this.requests).map(x => this.requests[x])
+  }
 }
 
 let loadFiles = filepaths => {
@@ -87,6 +91,10 @@ var loadData = (path, callback) => {
   }).catch(error => console.log(error))
 }
 
+// classes
 module.exports.Request = Request
 module.exports.FormData = FormData
+module.exports.Context = Context
+
+// methods
 module.exports.loadData = loadData

@@ -44,11 +44,11 @@ ctx.formData
 Access requests as an array:
 
 ```node
-let rs = Object.keys(ctx.requests).map(x => ctx.requests[x])
+ctx.listRequests()
 ```
 
 Output all User-Agents:
 
 ```node
-rs.map(x => x.headers['User-Agent'])
+ctx.listRequests().map(x => x.headers['User-Agent'])
 ```
