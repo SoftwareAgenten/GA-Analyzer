@@ -40,7 +40,7 @@ let loadFiles = filepaths => {
   return Promise.all(filepaths.map(x => fs.readFile(x)))
 }
 
-var loadData = (path, callback) => {
+let loadData = (path, callback) => {
   if (typeof path === 'function') {
     callback = path
     path = 'data'
