@@ -37,18 +37,26 @@ Output POST-Data of all form-data entries containing the key `log` and `pwd`.
 
 ```node
 ctx.formData
-    .filter(x => (x.post.log && x.post.pwd))
-    .map(x => x.post)
-```
-
-Access requests as an array:
-
-```node
-ctx.listRequests()
+  .filter(x => (x.post.log && x.post.pwd))
+  .map(x => x.post)
 ```
 
 Output all User-Agents:
 
 ```node
-ctx.listRequests().map(x => x.headers['User-Agent'])
+ctx.requests.map(x => x.headers['User-Agent'])
+```
+
+Count the number of User-Agents containing the string *Jetpack*:
+
+```node
+ctx.requests
+  .filter(x => /Jetpack/.test(x.headers['User-Agent']))
+  .length
+```
+
+List all User-Agents by occurrences.
+
+```node
+GA.max(ctx.requests.map(x => x.headers['User-Agent']))
 ```
