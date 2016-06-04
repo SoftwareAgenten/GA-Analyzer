@@ -58,13 +58,13 @@ ctx.requests
 List all User-Agents by number of occurrences:
 
 ```node
-GA.max(ctx.requests.map(x => x.headers['User-Agent']))
+GA.count(ctx.requests.map(x => x.headers['User-Agent']))
 ```
 
 Sort all POST-`pwd`-keys by number of occurrences:
 
 ```node
-GA.max(ctx.formData.map(x => x.post.pwd))
+GA.count(ctx.formData.map(x => x.post.pwd))
 ```
 
 Count the number of repeated attempts:
