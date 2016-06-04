@@ -29,7 +29,7 @@ Loading files...
 Invoked Callback
 ```
 
-The context owns two properties, `formData : Array`, and `requests : Object`. The IDs of the requests are used as keys on the `requests` property.
+The context owns two properties, `formData : Array`, and `requests : Array`. The IDs of the requests are used as keys on the `requests` property.
 
 ## Examples
 
