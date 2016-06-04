@@ -89,7 +89,7 @@ let loadData = (path, callback) => {
   }).catch(error => console.log(error))
 }
 
-let max = (list) => {
+let count = (list) => {
   var array = []
   
 	list.forEach(x => {
@@ -111,4 +111,4 @@ module.exports.Context = Context
 
 // methods
 module.exports.loadData = loadData
-module.exports.max = max
+module.exports.count = count

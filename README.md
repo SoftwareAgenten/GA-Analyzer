@@ -29,7 +29,7 @@ Loading files...
 Invoked Callback
 ```
 
-The context owns two properties, `formData : Array`, and `requests : Object`. The IDs of the requests are used as keys on the `requests` property.
+The context owns two properties, `formData : Array`, and `requests : Array`. The IDs of the requests are used as keys on the `requests` property.
 
 ## Examples
 
@@ -58,13 +58,13 @@ ctx.requests
 List all User-Agents by number of occurrences:
 
 ```node
-GA.max(ctx.requests.map(x => x.headers['User-Agent']))
+GA.count(ctx.requests.map(x => x.headers['User-Agent']))
 ```
 
 Sort all POST-`pwd`-keys by number of occurrences:
 
 ```node
-GA.max(ctx.formData.map(x => x.post.pwd))
+GA.count(ctx.formData.map(x => x.post.pwd))
 ```
 
 Count the number of repeated attempts:
