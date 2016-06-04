@@ -29,4 +29,46 @@ Loading files...
 Invoked Callback
 ```
 
-The context own two properties, `formData : Array`, and `requests : Object`. The IDs of the requests are used as keys on the `requests` property.
+The context owns two properties, `formData : Array`, and `requests : Array`. The IDs of the requests are used as keys on the `requests` property.
+
+## Examples
+
+Output POST-Data of all form-data entries containing the key `log` and `pwd`.
+
+```node
+ctx.formData
+  .filter(x => (x.post.log && x.post.pwd))
+  .map(x => x.post)
+```
+
+Output all User-Agents:
+
+```node
+ctx.requests.map(x => x.headers['User-Agent'])
+```
+
+Count the number of User-Agents containing the string *Jetpack*:
+
+```node
+ctx.requests
+  .filter(x => /Jetpack/.test(x.headers['User-Agent']))
+  .length
+```
+
+List all User-Agents by number of occurrences:
+
+```node
+GA.count(ctx.requests.map(x => x.headers['User-Agent']))
+```
+
+Sort all POST-`pwd`-keys by number of occurrences:
+
+```node
+GA.count(ctx.formData.map(x => x.post.pwd))
+```
+
+Count the number of repeated attempts:
+
+```node
+ctx.requests.filter(x => x.previousRequestIds.length > 0).length
+```

@@ -36,7 +36,7 @@ let loadFiles = filepaths => {
   return Promise.all(filepaths.map(x => fs.readFile(x)))
 }
 
-var loadData = (path, callback) => {
+let loadData = (path, callback) => {
   if (typeof path === 'function') {
     callback = path
     path = 'data'
@@ -58,8 +58,8 @@ var loadData = (path, callback) => {
       const formDataJSON = contents[0].map(x => JSON.parse(x))
       const requestsJSON = contents[1].map(x => JSON.parse(x))
       
-      const requests = requestsJSON.reduce((o, x) => {
-        o[x.id] = new Request(
+      const requests = requestsJSON.map(x => 
+        new Request(
           x.id,
           x.filename,
           x.time,
@@ -71,12 +71,14 @@ var loadData = (path, callback) => {
           x.previousRequestIds,
           x.geo.countryCode,
           x.geo.regionCode
-        )
+        ))
+      const requestsDict = requests.reduce((o, x) => {
+        o[x.id] = x
         return o
       }, {})
       const formData = formDataJSON.map(x => (new FormData(
         x.post,
-        requests[x.requestId]
+        requestsDict[x.requestId]
       )))
       const context = new Context(formData, requests)
       
@@ -87,6 +89,26 @@ var loadData = (path, callback) => {
   }).catch(error => console.log(error))
 }
 
+let count = (list) => {
+  var array = []
+  
+	list.forEach(x => {
+		var i = array.findIndex(e => e.name === x)
+		if (i !== -1) {
+			array[i].count += 1
+		} else {
+			array.push({ name: x, count: 1 })
+		}
+	})
+  
+	return array.sort((x, y) => y.count - x.count)
+}
+
+// classes
 module.exports.Request = Request
 module.exports.FormData = FormData
+module.exports.Context = Context
+
+// methods
 module.exports.loadData = loadData
+module.exports.count = count
