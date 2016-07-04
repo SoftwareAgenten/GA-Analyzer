@@ -104,6 +104,10 @@ let count = list => {
 	return array.sort((x, y) => y.count - x.count)
 }
 
+let save = (path, object) => {
+  fs.writeFile(path, JSON.stringify(object))
+}
+
 // classes
 module.exports.Request = Request
 module.exports.FormData = FormData
@@ -112,3 +116,4 @@ module.exports.Context = Context
 // methods
 module.exports.loadData = loadData
 module.exports.count = count
+module.exports.save = save
