@@ -89,7 +89,7 @@ let loadData = (path, callback) => {
   }).catch(error => console.log(error))
 }
 
-let count = (list) => {
+let count = list => {
   var array = []
   
 	list.forEach(x => {
