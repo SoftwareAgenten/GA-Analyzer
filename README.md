@@ -7,7 +7,7 @@ A node.js based analyzer for [Great-Attractor](https://github.com/SoftwareAgente
 Load the GA-Analyzer into the node REPL by running `node` and executing the following command.
 
 ```node
-> let GA = require('./analyzer.js')
+> const GA = require('./analyzer.js')
 undefined
 ```
 
@@ -18,7 +18,7 @@ Then, create a variable for your context.
 undefined
 ```
 
-Load a GA data archive by calling `GA.loadData([path], callback)`. The path must point to the data folder of the GA-system. If `path` is not specified, `"data"` will be used.
+Load a GA data archive by calling `GA.loadData([path,] callback)`. The path must point to the data folder of the GA-system. If `path` is not specified, `"data"` will be used.
 
 The callback function should catch the passed value and assign it to the context. After having loaded all files, an `Invoked Callback` message will appear.
 
@@ -29,7 +29,7 @@ Loading files...
 Invoked Callback
 ```
 
-The context owns two properties, `formData : Array`, and `requests : Array`. The IDs of the requests are used as keys on the `requests` property.
+The context now owns two properties, `formData : Array`, and `requests : Array`.
 
 ## Examples
 
@@ -55,7 +55,7 @@ ctx.requests
   .length
 ```
 
-List all User-Agents by number of occurrences:
+List all User-Agents sorted by number of occurrences:
 
 ```node
 GA.count(ctx.requests.map(x => x.headers['User-Agent']))
